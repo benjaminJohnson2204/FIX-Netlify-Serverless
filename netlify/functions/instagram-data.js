@@ -14,7 +14,7 @@ export const handler = async (event, context) => {
     };
   }
 
-  const browser = await puppeteer.launch({
+  const browser = await chromium.puppeteer.launch({
     executablePath:
       process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
     args: [
