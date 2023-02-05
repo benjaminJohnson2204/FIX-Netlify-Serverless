@@ -1,4 +1,5 @@
-const chromium = require('chrome-aws-lambda');
+import chromium from '@sparticuz/chromium-min';
+import puppeteer from 'puppeteer-core';
 const dotenv = require('dotenv');
 
 dotenv.config({ path: '.env' });
@@ -13,7 +14,7 @@ export const handler = async (event, context) => {
     };
   }
 
-  const browser = await chromium.puppeteer.launch({
+  const browser = await puppeteer.launch({
     executablePath:
       process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
     args: [
