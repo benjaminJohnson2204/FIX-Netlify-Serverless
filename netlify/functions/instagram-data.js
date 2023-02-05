@@ -1,5 +1,5 @@
-import puppeteer from 'puppeteer';
-import dotenv from 'dotenv';
+const puppeteer = require('pupeteer');
+const dotenv = require('dotenv');
 
 dotenv.config({ path: '.env' });
 const POST_COUNT = 3;
