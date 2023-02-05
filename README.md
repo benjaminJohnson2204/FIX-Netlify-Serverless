@@ -1,18 +1,15 @@
-# Up and Running with Serverless Functions (Jamstack Explorers)
+# FixNation Netlify Servlerless Functions
 
-Learn how to use serverless functions in less than 30 minutes!
+This function is running at `https://main--fix-netlify-serverless.netlify.app/` (although it's not working on the deployment right now).
 
-📼: [Free Video Course](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/)
+To run the function locally, install Netlify's CLI with `npm install netlify-cli --global`
 
-## 📚 Resources
+Then, run the development server with `ntl dev`.
 
-| Lesson                                                                                                                                                                                                | Start Branch                                                                                              | End Branch                                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [Introduction with Serverless Functions](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/introduction-with-serverless-functions)                                         | -                                                                                                         | -                                                                                                     |
-| [Project Setup with Serverless Functions](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/project-setup-with-serverless-functions)                                       | [Start Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/02-begin) | [End Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/02-end) |
-| [Create Your First Serverless Function](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/create-your-first-serverless-function)                                           | [Start Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/03-begin) | [End Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/03-end) |
-| [Integrate with a Third Party API with Serverless Functions](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/integrate-with-a-third-party-api-with-serverless-functions) | [Start Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/04-begin) | [End Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/04-end) |
-| [Deploying Serverless Functions](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/deploying-serverless-functions)                                                         | -                                                                                                         | -                                                                                                     |
-| [Customizing the Request with Serverless Functions](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/customizing-the-request-with-serverless-functions)                   | [Start Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/06-begin) | [End Code](https://github.com/netlify/explorers-up-and-running-with-serverless-functions/tree/06-end) |
-| [The Power of Atomic Serverless Functions](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/the-power-of-atomic-serverless-functions)                                     | -                                                                                                         | -                                                                                                     |
-| [Next Steps with Serverless Functions](https://explorers.netlify.com/learn/up-and-running-with-serverless-functions/next-steps-with-serverless-functions)                                             | -                                                                                                         | -                                                                                                     |
+The function is located on the path `/.netlify/functions/instagram-data`, and must be accessed with a query parameter of `username` being the username of the Instagram user you want to get data about. For example,
+
+`http://localhost::8888/.netlify/functions/instagram-data?username=<a-username>`
+
+## Environment Variables
+
+In order to access auth-only Instagram pages, the code uses a session ID, in the form `SESSION_ID=<sessionId>` in a `.env` file in the root directory. Ask me for the session ID I'm using if you need it for testing, and I'll give it to you. Or just get your own by visiting Instagram's website and checking for a `SessionID` cookie.
