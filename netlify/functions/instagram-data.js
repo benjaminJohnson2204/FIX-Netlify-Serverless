@@ -1,5 +1,6 @@
-import puppeteer from 'puppeteer';
-import dotenv from 'dotenv';
+const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');
+const dotenv = require('dotenv');
 
 dotenv.config({ path: '.env' });
 const POST_COUNT = 3;
@@ -13,7 +14,18 @@ export const handler = async (event, context) => {
     };
   }
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    executablePath:
+      process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
+    args: [
+      ...chromium.args,
+      '--disable-features=AudioServiceOutOfProcess',
+      '--disable-gpu',
+      '--disable-software-rasterize',
+    ],
+    defaultViewport: chromium.defaultViewport,
+    headless: chromium.headless,
+  });
   const page = await browser.newPage();
 
   await page.goto(`https://www.instagram.com`);
@@ -55,6 +67,8 @@ export const handler = async (event, context) => {
     }
     return 'Not found';
   });
+
+  await browser.close();
 
   result.push({
     imageUrl,
