@@ -11,6 +11,9 @@
   #  to = "/index.html"
   #  status = 200
 
+  [functions]
+    node_bundler = "esbuild"
+
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
   #[dev]
