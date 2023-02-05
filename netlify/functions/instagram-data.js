@@ -43,14 +43,14 @@ export const handler = async (event, context) => {
   // [alt="${username}\'s profile picture"]
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const selectorString = `header img`;
-  const imageUrl = await page.evaluate(
+  const imageUrlPromise = page.evaluate(
     (selectorString) =>
       document.querySelector(selectorString)?.getAttribute('src'),
     selectorString
   );
 
   // Post images
-  const postImageUrls = await page.evaluate((postCount) => {
+  const postImageUrlsPromise = page.evaluate((postCount) => {
     const result = [];
     const postImageElements = document.querySelectorAll('article img');
     for (let i = 0; i < postCount && i < postImageElements.length; i++) {
@@ -60,7 +60,7 @@ export const handler = async (event, context) => {
   }, POST_COUNT);
 
   // Follower count
-  const followerCount = await page.evaluate(() => {
+  const followerCountPromise = page.evaluate(() => {
     const buttonElements = document.querySelectorAll('li > a > div');
     for (let i = 0; i < buttonElements.length; i++) {
       const buttonElement = buttonElements[i];
@@ -70,6 +70,10 @@ export const handler = async (event, context) => {
     }
     return 'Not found';
   });
+
+  const imageUrl = await imageUrlPromise;
+  const postImageUrls = await postImageUrlsPromise;
+  const followerCount = await followerCountPromise;
 
   await browser.close();
 
@@ -81,9 +85,9 @@ export const handler = async (event, context) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify(result),
     headers: {
       'access-control-allow-origin': '*',
     },
+    body: JSON.stringify(result),
   };
 };
