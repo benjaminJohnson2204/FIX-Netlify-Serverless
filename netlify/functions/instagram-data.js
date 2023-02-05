@@ -5,13 +5,6 @@ dotenv.config({ path: '.env' });
 const POST_COUNT = 3;
 
 export const handler = async (event, context) => {
-  const auth = event.headers.Authorization;
-  if (!auth || auth != process.env.API_KEY) {
-    return {
-      statusCode: 401,
-      body: 'API Key not provided/invalid',
-    };
-  }
   const username = event.queryStringParameters.username;
   if (!username) {
     return {
@@ -72,5 +65,8 @@ export const handler = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify(result),
+    headers: {
+      'access-control-allow-origin': '*',
+    },
   };
 };
