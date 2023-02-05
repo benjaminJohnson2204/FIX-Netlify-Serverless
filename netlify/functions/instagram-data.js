@@ -1,6 +1,6 @@
-import chromium from '@sparticuz/chromium-min';
-import puppeteer from 'puppeteer-core';
-const dotenv = require('dotenv');
+// import chromium from '@sparticuz/chromium-min';
+import puppeteer from 'puppeteer';
+import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env' });
 const POST_COUNT = 3;
@@ -15,19 +15,19 @@ export const handler = async (event, context) => {
   }
 
   const browser = await puppeteer.launch({
-    executablePath:
-      process.env.CHROME_EXECUTABLE_PATH ||
-      (await chromium.executablePath(
-        'https://github.com/Sparticuz/chromium/releases/download/v110.0.0/chromium-v110.0.0-pack.tar'
-      )),
-    args: [
-      ...chromium.args,
-      '--disable-features=AudioServiceOutOfProcess',
-      '--disable-gpu',
-      '--disable-software-rasterize',
-    ],
-    defaultViewport: chromium.defaultViewport,
-    headless: chromium.headless,
+    // executablePath:
+    //   process.env.CHROME_EXECUTABLE_PATH ||
+    //   (await chromium.executablePath(
+    //     'https://github.com/Sparticuz/chromium/releases/download/v110.0.0/chromium-v110.0.0-pack.tar'
+    //   )),
+    // args: [
+    //   ...chromium.args,
+    //   '--disable-features=AudioServiceOutOfProcess',
+    //   '--disable-gpu',
+    //   '--disable-software-rasterize',
+    // ],
+    // defaultViewport: chromium.defaultViewport,
+    // headless: chromium.headless,
   });
   const page = await browser.newPage();
 
