@@ -16,7 +16,7 @@ export const handler = async (event, context) => {
 
   const browser = await puppeteer.launch({
     executablePath:
-      process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath),
+      process.env.CHROME_EXECUTABLE_PATH || (await chromium.executablePath()),
     args: [
       ...chromium.args,
       '--disable-features=AudioServiceOutOfProcess',
