@@ -1,5 +1,4 @@
 const chromium = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer-core');
 const dotenv = require('dotenv');
 
 dotenv.config({ path: '.env' });
